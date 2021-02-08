@@ -1,0 +1,43 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.fas {
+  margin-right: 5px;
+}
+
+.home-image {
+  height: 400px;
+  background-image: url("main_top_03.jpg");
+  background-size: cover;
+}
+
+.about-image1 {
+  height: 400px;
+  background-image: url("milk.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+}
+
+.about-image2 {
+  height: 400px;
+  background-image: url("eggs.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+}
+
+.about-image3 {
+  height: 400px;
+  background-image: url("river.png");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+}
+
+.about-image4 {
+  height: 400px;
+  background-image: url("strawberries.jpg");
+  background-size: cover;
+  background-position: center;
+}
