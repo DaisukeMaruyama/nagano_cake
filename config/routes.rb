@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
-  resources :items, only: [:show, :index]
+  resources :items, only: [:show, :index, :new, :create]
 
 
 
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :items
+    resources :items, only: [:show, :index, :new, :create]
   end
 
 

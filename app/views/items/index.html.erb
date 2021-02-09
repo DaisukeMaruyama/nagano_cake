@@ -3,54 +3,41 @@
 		<section class="contentBlock">
 			    <div class="itemSlidesWrapper mt-3">
 					<h3>製品一覧</h3>
+					<% if current_customer == nil %>
+  					<%= link_to (new_customer_session_path) do %>
+  					  <sapn style="color: red;">※ご購入の際はログインしてください</span>
+  					<% end %>
+  				<% end %>
 
 
           <ul class="itemSlides ">
-            
+
+          <% @items.each do |item| %>
   				  <li class="item">
   				    <a style="color: black;" href="#">
   				    <div class="item">
-              <%= image_tag 'eggs.jpeg', :width => '300', :height => '300' %>
-              </div>  
+                <%= attachment_image_tag item, :image,:fill,300,300, size: "300×300", fallback: "no_image.jpg", format: "jpeg" %>
+              </div>
               	<div class="credit mx-3 my-2">
               		<div class="edition">
-                    <span class="list-item__icon">Limited</span>
+                    <span class="list-item__icon"><%= item.genre_id %></span>
                   </div>
-              		<div class="itemName">【NaganoCake限定】産地直送卵</div>
-              		<div class="price">¥2,000+税</div>
+              		<div class="itemName"><%= item.item_name %></div>
+              		<div class="price">¥<%= number_to_currency(item.price) %>+税</div>
               	</div>
               </a>
+
+              <%= link_to (item_path(item)) do %>
+                <button type="button" class="btn btn btn-outline-dark btn-sm" style="margin: 10px;"> 製品詳細画面</button>
+              <% end %>
+
+            <% if customer_signed_in? %>
+              <%= link_to (item_path(item)) do %>
+                <button type="button" class="btn btn btn-outline-dark btn-sm"> 購入</button>
+              <% end %>
+            <% end %>
             </li>
-            
-  				  <li class="item">
-  				    <a style="color: black;" href="#">
-  				    <div class="item">
-              <%= image_tag 'eggs.jpeg', :width => '300', :height => '300' %>
-              </div>  
-              	<div class="credit mx-3 my-2">
-              		<div class="edition">
-                    <span class="list-item__icon">Limited</span>
-                  </div>
-              		<div class="itemName">【NaganoCake限定】産地直送卵</div>
-              		<div class="price">¥2,000+税</div>
-              	</div>
-              </a>
-            </li>
-            
-            <li class="item">
-  				    <a style="color: black;" href="#">
-  				    <div class="item">
-              <%= image_tag 'eggs.jpeg', :width => '300', :height => '300' %>
-              </div>  
-              	<div class="credit mx-3 my-2">
-              		<div class="edition">
-                    <span class="list-item__icon">Limited</span>
-                  </div>
-              		<div class="itemName">【NaganoCake限定】産地直送卵</div>
-              		<div class="price">¥2,000+税</div>
-              	</div>
-              </a>
-            </li>
+          <% end %>
 
           </ul>
 				</div>

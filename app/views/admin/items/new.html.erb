@@ -1,0 +1,50 @@
+  <div class="container">
+
+		<div class="form"></div>
+      <div class="text-left mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">製品登録</h1>
+
+				<div class="mx-auto">
+				<%= form_with model: @item,local: true do |f| %>
+
+         <% if @item.errors.any? %>
+          <div class="error-explanation">
+            <h3><%= @item.errors.count %> errors prohibited this book from being saved</h3>
+            <% @item.errors.full_messages.each do |message| %>
+            <ul>
+              <li><%= message %></li>
+            </ul>
+            <% end %>
+          </div>
+        <% end %>
+
+          <div class="field">
+            <%= f.label :製品名 %><br />
+            <%= f.text_field :item_name, class: "form" %>
+          </div>
+          <div class="field">
+            <%= f.label :製品ジャンル %><br />
+            <%= f.text_field :genre_id, class: "form" %>
+          </div>
+          <div class="field">
+            <%= f.label :価格 %><br />
+            <%= f.text_field :price, class: "form" %>
+          </div>
+          <div class="field">
+            <%= f.label :製品写真 %><br />
+            <%= f.attachment_field :image %>
+          </div>
+          <div class="field">
+            <%= f.label :製品紹介 %><br />
+            <%= f.text_area :introduction, class: "text-form" %>
+          </div>
+          <div class="action">
+            <%= f.submit "製品を追加", class: "btn btn-secondary" %>
+          </div>
+      <% end %>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
