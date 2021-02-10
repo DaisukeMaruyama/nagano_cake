@@ -18,7 +18,7 @@
 
             <% if current_customer.present? %>
               <% if @item.is_active? %>
-                <%= form_for [:coutomers, @cart_item], html: {class: "cart_btn"} do |f| %>
+                <%= form_for [:customers, @cart_item], html: {class: "cart_btn"} do |f| %>
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <%= f.select :amount,(1..10).to_a %>
                   <%= f.submit "カートに入れる", class:"btn btn-primary" %>

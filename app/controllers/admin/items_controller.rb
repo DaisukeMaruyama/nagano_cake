@@ -17,6 +17,12 @@ class Admin::ItemsController < ApplicationController
     @item.save
     redirect_to items_path
   end
+  
+  def edit
+  end
+  
+  def update
+  end
 
   private
 

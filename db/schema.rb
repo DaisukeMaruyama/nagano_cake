@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_024330) do
+ActiveRecord::Schema.define(version: 2021_02_10_070600) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_024330) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "item_name"
