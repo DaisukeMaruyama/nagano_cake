@@ -16,8 +16,6 @@
             <p>製品紹介：<%= @item.introduction %></p>
             <h4><strong>¥<%= number_to_currency(@item.price) %></strong><small>＋税</small></h4>
 
-<<<<<<< HEAD
-=======
             <% if current_customer.present? %>
               <% if @item.is_active? %>
                 <%= form_for [:customers, @cart_item], html: {class: "cart_btn"} do |f| %>
@@ -30,7 +28,6 @@
               <% end %>
             <% end %>
 
->>>>>>> refs/remotes/origin/main
         </div>
     </div>
 </div>

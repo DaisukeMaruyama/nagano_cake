@@ -14,11 +14,11 @@ class ItemsController < ApplicationController
     @item.save
     redirect_to items_path
   end
-
+  
   private
 
   def item_params
     params.require(:item).permit(:item_name, :image, :introduction, :genre_id, :price)
   end
-  
+
 end
