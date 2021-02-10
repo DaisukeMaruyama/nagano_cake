@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+  </head>
+  <body>
+    <hader>
+      <nav class="navbar navbar-expand-lg navbar-dark" style="font-family:cursive;">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span><i class="fas fa-birthday-cake"></i>NaganoCake</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li><%= link_to 'Home', root_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'About', about_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'Cakes', items_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'logout', destroy_customer_session_path, method: :delete, class: "nav-link text-light", data:{confirm: 'Are you sure？'} %></li>
+              <% else %>
+                <li><%= link_to 'Home', root_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'About', about_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'Cakes', items_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'sign up', new_customer_registration_path , class: " nav-link text-light" %></li>
+                <li><%= link_to 'login', new_customer_session_path, class: " nav-link text-light" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </hader>
+
+    <%= yield %>
+    <footer>
+      <div class='container mt-5'>
+      	<div class='row'>
+        	<div class='mx-auto'>
+        		<p>CopyRight NaganoCake.inc</p>
+        	</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
