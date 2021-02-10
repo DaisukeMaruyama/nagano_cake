@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3 mt-3">
+      <div class="name-search">
+        <h5>商品名検索</h5>
+        <%= form_with url: search_search_path, method: :get, local: true do |f| %>
+          <%= f.text_field 'search[value]', size: "26x4" %><br>
+          <span class="search-button col-xs-12 text-right">
+            <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "match" }) %>
+            <%= f.submit :"検索" %>
+          </span>
+        <% end %>
+      </div>
+
+      <table class="table table-bordered genre-table">
+          <thead>
+            <tr>
+              <th>ジャンル検索</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @genres.each do |genre| %>
+            <tr>
+              <td>
+                <%= link_to genre.name, search_path('search[value]': genre.id, 'search[how]': "match") %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+
+
+    <div class="col-9">
+		  <section class="contentBlock">
+			  <div class="itemSlidesWrapper mt-3">
+					<h3>製品一覧</h3>
+					<% if current_customer == nil %>
+  					<%= link_to (new_customer_session_path) do %>
+  					  <sapn style="color: red;">※ご購入の際はログインしてください</span>
+  					<% end %>
+  				<% end %>
+
+
+          <ul class="itemSlides ">
+
+          <% @items.each do |item| %>
+  				  <li class="item">
+  				    <a style="color: black;" href="#">
+  				    <div class="item">
+                <%= attachment_image_tag item, :image,:fill,190,150, size: "190×150", fallback: "no_image.jpg", format: "jpeg" %>
+              </div>
+              	<div class="credit mx-3 my-2">
+              		<div class="itemName"><%= item.item_name %></div>
+              		<div class="price">¥<%= number_to_currency(item.price) %>+税</div>
+              	</div>
+              </a>
+
+              <%= link_to (item_path(item)) do %>
+                <button type="button" class="btn btn btn-outline-dark btn-sm" style="margin: 10px;"> 製品詳細画面</button>
+              <% end %>
+
+            <% if customer_signed_in? %>
+              <%= link_to (item_path(item)) do %>
+                <button type="button" class="btn btn btn-outline-dark btn-sm"> 購入</button>
+              <% end %>
+            <% end %>
+            </li>
+          <% end %>
+
+          </ul>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

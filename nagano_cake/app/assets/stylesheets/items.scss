@@ -1,0 +1,17 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.itemSlides {
+  display: flex;
+	flex-wrap: wrap;
+	justify-content:center;
+}
+
+.item {
+  margin: 10px;
+  background-color: #f8f8ff;
+}
+
+.image {
+  margin: 10px;
+}

@@ -1,0 +1,47 @@
+<div class="container">
+
+		<section class="contentBlock">
+			    <div class="itemSlidesWrapper mt-3">
+					<h3>検索結果一覧</h3>
+					<% if current_customer == nil %>
+  					<%= link_to (new_customer_session_path) do %>
+  					  <sapn style="color: red;">※ご購入の際はログインしてください</span>
+  					<% end %>
+  				<% end %>
+
+
+          <ul class="itemSlides ">
+
+            <% if @datas.empty? %>
+              <h2>該当する商品はありません</h2>
+            <% end %>
+
+          <% @datas.each do |data| %>
+  				  <li class="item">
+  				    <div class="item">
+  				    <%= link_to (item_path(data.id)) do %>
+                <%= attachment_image_tag data, :image,:fill,190,150, size: "190×150", fallback: "no_image.jpg", format: "jpeg" %>
+              <% end %>
+              </div>
+              	<div class="credit mx-3 my-2" style="color: black;">
+              		<div class="itemName"><%= data.item_name %></div>
+              		<div class="price">¥<%= number_to_currency(data.price) %>+税</div>
+              	</div>
+
+
+              <%= link_to (item_path(data.id)) do %>
+                <button type="button" class="btn btn btn-outline-dark btn-sm" style="margin: 10px;"> 製品詳細画面</button>
+              <% end %>
+
+            <% if customer_signed_in? %>
+              <%= link_to (item_path(data.id)) do %>
+                <button type="button" class="btn btn btn-outline-dark btn-sm"> 購入</button>
+              <% end %>
+            <% end %>
+            </li>
+          <% end %>
+
+          </ul>
+				</div>
+			</section>
+		</div>
