@@ -21,10 +21,10 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
-                <li><%= link_to 'Home', costomers_path(current_customer), class: "fas fa-home nav-link text-light" %></li>
-                <li><%= link_to 'Users', costomers_path, class: "fas fa-users nav-link text-light" %></li>
-                <li><%= link_to 'Books', items_path, class: "fas fa-book-open nav-link text-light" %></li>
-                <li><%= link_to 'logout',  class: "fas fa-sign-out-alt nav-link text-light", data:{confirm: 'Are you sure？'} %></li>
+                <li><%= link_to 'Home', root_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'About', about_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'Cakes', items_path, class: " nav-link text-light" %></li>
+                <li><%= link_to 'logout', destroy_customer_session_path, method: :delete, class: "nav-link text-light", data:{confirm: 'Are you sure？'} %></li>
               <% else %>
                 <li><%= link_to 'Home', root_path, class: " nav-link text-light" %></li>
                 <li><%= link_to 'About', about_path, class: " nav-link text-light" %></li>
