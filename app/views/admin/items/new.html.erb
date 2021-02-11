@@ -18,13 +18,14 @@
           </div>
         <% end %>
 
+
           <div class="field">
             <%= f.label :製品名 %><br />
             <%= f.text_field :item_name, class: "form" %>
           </div>
           <div class="field">
             <%= f.label :製品ジャンル %><br />
-            <%= f.text_field :genre_id, class: "form" %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :item_name, include_blank: "--選択してください--" %>
           </div>
           <div class="field">
             <%= f.label :価格 %><br />
@@ -38,8 +39,12 @@
             <%= f.label :製品紹介 %><br />
             <%= f.text_area :introduction, class: "text-form" %>
           </div>
+          <div class="field">
+            <%= f.label :販売ステータス %><br />
+            <%= f.select :is_active, [["販売停止中",0],["販売中",1]], include_blank: "--選択してください--" %>
+          </div>
           <div class="action">
-            <%= f.submit "製品を追加", class: "btn btn-secondary" %>
+            <%= f.submit "製品を追加", class: "btn btn-secondary mt-3" %>
           </div>
       <% end %>
 				</div>
@@ -48,3 +53,5 @@
 			</div>
 		</div>
 	</div>
+
+

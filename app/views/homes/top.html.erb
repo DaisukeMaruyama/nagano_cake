@@ -2,21 +2,35 @@
 
   <div class="container">
     <div class="heading text-center" style="color: #D2691E;">
-        <div class="my-5"><h1 style="font-size: 70px; font-family:cursive;">〜Nagano cake〜</h1></div>
+        <div class="my-5"><h1 style="font-size: 70px;">〜Nagano cake〜</h1></div>
 
-        <p>ようこそNaganoCakeへ！当店はフレッシュな素材を使ったケーキ販売を行っております。
-        <br>「お客様に美味しいケーキをお届けしたい」という、素直な思いから妥協のない原材料を贅沢に使用し、<br>幅広い年齢層のお客様に好まれる商品に仕上げています。
+        <p>ようこそ、ながのCAKEへ！
+          <br>このサイトは、ケーキ販売のECサイトになります。
+          <br>会員でない⽅も商品の閲覧はできますが、
+          <br>購⼊には会員登録が必要になります。
         </p>
     </div>
-    <div style="margin-top: 20px;" class="text-center">会員でない方も商品をご覧頂けますが、ご購入の際は会員登録が必要となります。</div>
+
 
     <div style="margin-top: 20px;">
-      <div class="row justify-content-center">
-        <div class="col-5"><a class="btn btn-success btn-sm btn-block sign_up" href="/customers/sign_up">Sign Up</a></div>
-        <div class="col-5 col-offset-2"><a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/customers/sign_in">Log in</a></div>
-      </div>
+      <h1>新着商品</h1>
+      <ul class="itemSlides ">
+          <% @items.each do |item| %>
+  				  <li class="item">
+  				    <a style="color: black;" href="#">
+  				    <div class="item">
+                <%= attachment_image_tag item, :image,:fill,190,150, size: "190×150", fallback: "no_image.jpg", format: "jpeg" %>
+              </div>
+              	<div class="credit mx-3 my-2">
+              		<div class="itemName"><%= item.item_name %></div>
+              		<div class="price">¥<%= number_to_currency(item.price) %>+税</div>
+              	</div>
+              </a>
+            </li>
+          <% end %>
+      </ul>
     </div>
-
+    <a class="toIndex" href="/items">全ての商品を見る></a>
 
   </div>
 
