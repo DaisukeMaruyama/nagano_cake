@@ -1,14 +1,12 @@
 class CartItem < ApplicationRecord
-  
+
   belongs_to :item
-  belongs_to :cutomer
-	
+  belongs_to :customer
+
+	# TAX
 	def subtotal_price
-	    (count*item.price*Constants::TAX).round
+	    (amount * item.price * 1.1).round
 	end
-	
-	def price_with_tax
-	  item.price * 10.0
-	end
-	
+
+
 end

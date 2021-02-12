@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
-  
+
 
   PER = 8
-  
+
   def index
-    @items = Item.all.page(params[:page]).per(PER)
+    @items = Item.all.page(params[:page]).per(PER).order(created_at: :desc)
     @genres = Genre.all
   end
 
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
     @item.save
     redirect_to items_path
   end
-  
+
   private
 
   def item_params

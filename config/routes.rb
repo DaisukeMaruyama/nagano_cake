@@ -2,11 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  get 'cart_items/index'
-  get 'cart_items/create'
-  get 'cart_items/destroy'
-  get 'cart_items/destroy_all'
-  get 'cart_items/update'
+
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
@@ -18,7 +14,8 @@ Rails.application.routes.draw do
 
   resources :items, only: [:show, :index, :new, :create]
   
-  resources :cart_items
+  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  resources :cart_items, except: [:new, :edit, :show]
 
   namespace :admin do
     get 'cutomers/index'
@@ -35,6 +32,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to:'homes#top'
   end
+
+
 
   namespace :admin do
     resources :items, only: [:show, :index, :new, :create, :edit, :update]

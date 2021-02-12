@@ -17,11 +17,11 @@ class Customer < ApplicationRecord
   
   # カートアイテム個数合計
   def cart_total_count
-    count = 0
+    amount = 0
     cart_items.each do |cart_item|
-      count += cart_item.count
+      am += cart_item.amount
     end
-    count
+    amount
   end
   
 end
