@@ -1,21 +1,25 @@
 Rails.application.routes.draw do
 
-
-
-
+  
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
 
   devise_for :customers
 
-
   resources :customers
 
   resources :items, only: [:show, :index, :new, :create]
   
+  resources :orders, only: [:show, :index, :new, :thanks, :create] do
+    collection do
+      post :confirm
+    end
+  end
+  
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, except: [:new, :edit, :show]
+
 
   namespace :admin do
     get 'cutomers/index'

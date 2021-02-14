@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :cart_items  
+  has_many :orders
   
    # カートアイテム合計
   def cart_item_sum
