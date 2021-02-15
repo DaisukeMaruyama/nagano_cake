@@ -1,0 +1,27 @@
+// Place all the styles related to the customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//マイページ
+
+.mypage-title {
+  margin-bottom: 50px;
+  font-family: "Kokoro";
+}
+
+.mypage-register-info-table {
+  width: 70%;
+}
+
+.mypage-flex-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  span {
+    flex-basis: 100px;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  a {
+    margin-right: 5px;
+  }
+}

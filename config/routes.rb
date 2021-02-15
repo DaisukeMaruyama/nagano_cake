@@ -7,20 +7,24 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
-  resources :customers
+  resources :customers, only: [:upatem, :show, :edit]
+  post 'customers/unsubscribe' => 'customers#unsubscribe'
+  get 'customers/withdraw' => 'customers#withdraw'
+  
 
   resources :items, only: [:show, :index, :new, :create]
 
-  get 'orders/thanks' => 'orders#thanks'
+  
   resources :orders, only: [:show, :index, :new, :create] do
     collection do
       post :confirm
     end
   end
+  get 'orders/thanks' => 'orders#thanks'
 
-  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  
   resources :cart_items, except: [:new, :edit, :show]
-
+  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
 
   namespace :admin do
     get 'cutomers/index'
