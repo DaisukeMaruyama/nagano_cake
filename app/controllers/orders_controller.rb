@@ -16,13 +16,13 @@ class OrdersController < ApplicationController
   def confirm
     @shipping_cost = 800 #後で管理画面設定。とりあえずはここに８００を記載
     @order = current_customer.orders.build(set_order)
-    
+
     #合計金額
     @order.total_payment = current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum} + @shipping_cost
-    
-    
+
+
     # 郵便番号をハイフンありのフォーマットに変更
-    @order.postal_code.insert(3, "-") if @order.postal_code.present? 
+    @order.postal_code.insert(3, "-") if @order.postal_code.present?
     case params[:address_type]
     when "0"
       @order.postal_code = current_customer.postal_code
@@ -35,16 +35,33 @@ class OrdersController < ApplicationController
     when "2"
     end
   end
-  
+
   def create
-    
+    @order = current_customer.orders.build(set_order)
+    @shipping_cost = 800
+    @order.total_payment = current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum} + @shipping_cost
+
+    if @order.save
+      current_customer.cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new(
+        order_id: @order.id,
+        item_id: cart_item.item.id,
+        price: @order.total_payment,
+        amount: cart_item.amount,
+        making_status: 0
+        )
+      end
+      #Addressに登録する処理をかく　今は分からない為、後ほど
+    end
+    current_customer.cart_items.destroy_all
+    redirect_to orders_thanks_path
   end
 
   def thanks
   end
-  
+
   def set_order
     params.require(:order).permit(:total_payment, :payment_method, :address, :postal_code, :name)
   end
-  
+
 end

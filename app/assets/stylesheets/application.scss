@@ -39,9 +39,17 @@ li {
   background-color: #A9A9A9;
 }
 
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 footer{
   background-color: #A9A9A9;
   color: white;
+  margin-top: auto;
 }
 
 .headline{
@@ -69,3 +77,6 @@ footer{
 .pagination {
   justify-content: center;
 }
+
+
+ 

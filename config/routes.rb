@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
@@ -10,13 +10,14 @@ Rails.application.routes.draw do
   resources :customers
 
   resources :items, only: [:show, :index, :new, :create]
-  
-  resources :orders, only: [:show, :index, :new, :thanks, :create] do
+
+  get 'orders/thanks' => 'orders#thanks'
+  resources :orders, only: [:show, :index, :new, :create] do
     collection do
       post :confirm
     end
   end
-  
+
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, except: [:new, :edit, :show]
 
