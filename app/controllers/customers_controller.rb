@@ -5,10 +5,6 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
-  def withdraw
-    @customer = Customer.find(params[:id])
-  end
-
   def update
     @customer = current_customer
     if @customer.update(customer_params)
@@ -23,6 +19,14 @@ class CustomersController < ApplicationController
   end
 
   def unsubscribe
+    @customer = current_customer
+    @customer.update(is_active: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
+  end
+  
+  def withdraw
   end
 
   private

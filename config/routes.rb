@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
-  post 'customers/unsubscribe' => 'customers#unsubscribe'
-  get 'customers/withdraw' => 'customers#withdraw'
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
   resources :customers, only: [:update, :show, :edit]
  
   

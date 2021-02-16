@@ -1,4 +1,11 @@
 class Customer < ApplicationRecord
+  
+  enum is_deleted:{Deleted: true, Nondeleted: false}
+  
+  #is_deletedされていない（false）ならログイン可能
+  def active_for_authentication
+    super && (self.is_active == "Nondeleted")
+  end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
