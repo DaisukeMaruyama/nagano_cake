@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def show
     @customer = Customer.find(params[:id])
   end
@@ -10,9 +10,9 @@ class CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to customer(@customer.id)
+      redirect_to customer_path(current_customer)
     else
       render :edit
     end
@@ -24,9 +24,9 @@ class CustomersController < ApplicationController
 
   def unsubscribe
   end
-  
+
   private
-  
+
   def customer_params
     params.require(:customer).permit(
       :first_name,
@@ -38,6 +38,6 @@ class CustomersController < ApplicationController
       :phone_number,
       :email)
   end
-  
-  
+
+
 end

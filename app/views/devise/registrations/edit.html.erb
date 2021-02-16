@@ -1,43 +1,77 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+<dev class="container">
+  <div class="row">
+    <h2 class="edit-heading col-xs-3">会員情報編集</h2>
+  </div>  
+  
+      <table class="edit-table col-lg-7 col-s-12 col-xs mt-3 table table-borderless">
+
+        <%= form_with model: @customer, local:true do |f| %>  
+          
+            <tr>
+              <th><%= f.label :氏名 %></th>
+              <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
+              <td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+            </tr>
+          
+          
+          
+            <tr>
+              <th><%= f.label :フリガナ %></th>
+              <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %></td>
+              <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %></td>
+            </tr>
+        
+          
+         
+            <tr>
+              <th><%= f.label :郵便番号 %></th>
+              <td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></td>
+              <td></td>
+            </tr>
+         
+          
+         
+            <tr>
+              <th><%= f.label :住所 %></th>
+              <td colspan="2"><%= f.text_field :address, autofocus: true, autocomplete: "address", style:"width:100%" %></td>
+            </tr>
+          
+          
+          
+            <tr>
+              <th><%= f.label :電話番号 %></th>
+              <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %></td>
+              <td></td>
+            </tr>
+          
+          
+        
+            <tr>
+              <th><%= f.label :メールアドレス %></th>
+              <td><%= f.text_field :email, autofocus: true, autocomplete: "email" %></td>
+              <td></td>
+            </tr>
+         
+      
+          
+          
+            <tr>
+              <td></td>
+              <td><%= f.submit "編集内容を保存",class: "btn btn-success"  %></td>
+              <td><%= link_to '退会する', root_path, class: "btn btn-danger" %></td>
+             <% end %>
+            </tr>
+          
+      </table>  
   </div>
+</dev>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+          

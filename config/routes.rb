@@ -7,24 +7,26 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
-  resources :customers, only: [:upatem, :show, :edit]
   post 'customers/unsubscribe' => 'customers#unsubscribe'
   get 'customers/withdraw' => 'customers#withdraw'
+  resources :customers, only: [:update, :show, :edit]
+ 
   
 
   resources :items, only: [:show, :index, :new, :create]
 
   
+  get 'orders/thanks' => 'orders#thanks'
   resources :orders, only: [:show, :index, :new, :create] do
     collection do
       post :confirm
     end
   end
-  get 'orders/thanks' => 'orders#thanks'
-
   
-  resources :cart_items, except: [:new, :edit, :show]
+  #destroy_allを先に記述しないとエラーが起こる
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  resources :cart_items, except: [:new, :edit, :show]
+  
 
   namespace :admin do
     get 'cutomers/index'

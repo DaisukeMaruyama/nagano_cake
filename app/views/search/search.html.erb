@@ -3,6 +3,7 @@
 		<section class="contentBlock">
 			    <div class="itemSlidesWrapper mt-3">
 					<h3>検索結果一覧</h3>
+					<h4>全<%= @datas.count %>件</h4>
 					<% if current_customer == nil %>
   					<%= link_to (new_customer_session_path) do %>
   					  <sapn style="color: red;">※ご購入の際はログインしてください</span>
