@@ -2,9 +2,9 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @address = Address.new
+    @Delivery = Delivery.new
     @customer = Customer.find(current_customer.id)
-    @registered_addresses = Address.where(customer_id: current_customer.id)
+    @registered_addresses = Delivery.where(customer_id: current_customer.id)
   end
 
   def show

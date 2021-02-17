@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
-  
+
   enum is_deleted:{Deleted: true, Nondeleted: false}
-  
+
   #is_deletedされていない（false）ならログイン可能
   def active_for_authentication?
     super && (self.is_deleted == "Nondeleted")
@@ -10,10 +10,11 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-  has_many :cart_items  
+
+  has_many :cart_items
   has_many :orders
-  
+  has_many :deliveries
+
    # カートアイテム合計
   def cart_item_sum
     total = 0
@@ -22,7 +23,7 @@ class Customer < ApplicationRecord
     end
     total
   end
-  
+
   # カートアイテム個数合計
   def cart_total_count
     amount = 0
@@ -31,5 +32,5 @@ class Customer < ApplicationRecord
     end
     amount
   end
-  
+
 end

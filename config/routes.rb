@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
@@ -11,8 +10,6 @@ Rails.application.routes.draw do
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   patch 'customers/withdraw' => 'customers#withdraw'
   resources :customers, only: [:update, :show, :edit]
- 
-  
 
   resources :items, only: [:show, :index, :new, :create]
 
@@ -28,8 +25,8 @@ Rails.application.routes.draw do
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, except: [:new, :edit, :show]
   
-  resources :addresses, only: [:update, :edit, :destroy, :index, :create]
-  
+  resources :deliveries, only: [:edit, :update, :index, :create, :destroy]
+
 
   namespace :admin do
     get 'cutomers/index'
