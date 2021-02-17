@@ -7,12 +7,12 @@
   </div>
 
 
-  <%= form_with model: @customer, url: customer_session_path, local:true do |f| %>
+  <%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
   <%= flash[:notice] %>
     <% if @customer.errors.any? %>
       <div class="error-explanation">
         <h3><%= @customer.errors.count %>件のエラーが発生しております。</h3>
-        <% @cu.errors.full_messages.each do |message| %>
+        <% @customer.errors.full_messages.each do |message| %>
           <ul>
             <li><%= message %></li>
           </ul>

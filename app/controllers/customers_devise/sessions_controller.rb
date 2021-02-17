@@ -2,7 +2,7 @@
 
 class Customers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :user_reject, only: [:create]
+   before_action :user_reject, only: [:create]
   
   def user_reject
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
@@ -11,6 +11,7 @@ class Customers::SessionsController < Devise::SessionsController
         flash[:notice] = "退会済みです。"
         redirect_to new_customer_sesion_path
       end
+      
     else
       flash[:notice] = "必須項目を入力してください。"
     end

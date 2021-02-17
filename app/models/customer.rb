@@ -1,5 +1,7 @@
 class Customer < ApplicationRecord
+  validates :email, presence: true
 
+  
   enum is_deleted:{Deleted: true, Nondeleted: false}
 
   #is_deletedされていない（false）ならログイン可能
