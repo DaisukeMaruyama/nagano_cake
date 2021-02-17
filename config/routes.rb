@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
   #destroy_allを先に記述しないとエラーが起こる
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, except: [:new, :edit, :show]
+  
+  resources :addresses, only: [:update, :edit, :destroy, :index, :create]
   
 
   namespace :admin do

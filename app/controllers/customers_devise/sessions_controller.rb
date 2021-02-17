@@ -5,14 +5,14 @@ class Customers::SessionsController < Devise::SessionsController
   before_action :user_reject, only: [:create]
   
   def user_reject
-    @customer = Customer.find_by(email: params[:customer][:email])
+    @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
-        flash[:error] = "退会済みです。"
+        flash[:notice] = "退会済みです。"
         redirect_to new_customer_sesion_path
       end
     else
-      flash[:error] = "必須項目を入力してください。"
+      flash[:notice] = "必須項目を入力してください。"
     end
   end
 

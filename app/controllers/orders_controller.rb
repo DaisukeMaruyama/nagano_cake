@@ -41,18 +41,18 @@ class OrdersController < ApplicationController
     @shipping_cost = 800
     @order.total_payment = current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum} + @shipping_cost
 
-    if @order.save
+     @order.save
       current_customer.cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new(
-        order_id: @order.id,
-        item_id: cart_item.item.id,
-        price: @order.total_payment,
-        amount: cart_item.amount,
-        making_status: 0
-        )
+      @order_detail = OrderDetail.new
+        @order_detail.order_id = @order.id
+        @order_detail.item_id = cart_item.item.id
+        @order_detail.price = @order.total_payment
+        @order_detail.amount = cart_item.amount
+        @order_detail.making_status = 0
+        @order_detail.save
       end
       #Addressに登録する処理をかく　今は分からない為、後ほど
-    end
+    
     current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end

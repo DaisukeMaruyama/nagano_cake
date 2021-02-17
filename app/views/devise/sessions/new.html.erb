@@ -1,7 +1,6 @@
 
 <div class = "container">
   <div class = "row">
-    <%= flash[:error] %>
     <div class = "col-sm-offset-2">
       <br><div class = "headline">会員の方はこちらからログイン</div><br><br>
     </div>
@@ -9,6 +8,17 @@
 
 
   <%= form_with model: @customer, url: customer_session_path, local:true do |f| %>
+  <%= flash[:notice] %>
+    <% if @customer.errors.any? %>
+      <div class="error-explanation">
+        <h3><%= @customer.errors.count %>件のエラーが発生しております。</h3>
+        <% @cu.errors.full_messages.each do |message| %>
+          <ul>
+            <li><%= message %></li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class = "row">
       <div class = "col-sm-offset-3 col-sm-6">
