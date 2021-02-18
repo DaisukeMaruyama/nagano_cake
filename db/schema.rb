@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 2021_02_17_082310) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active", default: true
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "item_name"
+    t.string "item_name", default: "f"
   end
 
   create_table "order_details", force: :cascade do |t|
