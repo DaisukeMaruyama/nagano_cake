@@ -31,9 +31,9 @@ class OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     when "1"
-      @order.postal_code = Address.find(set_Address[:id]).postal_code
-      @order.address = Address.find(set_Address[:id]).address
-      @order.name = Address.find(set_Address[:id]).name
+      @order.postal_code = Delivery.find(set_Address[:id]).postal_code
+      @order.address = Delivery.find(set_Address[:id]).address
+      @order.name = Delivery.find(set_Address[:id]).name
     when "2"
     end
   end

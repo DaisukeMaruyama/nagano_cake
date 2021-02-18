@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_082310) do
+ActiveRecord::Schema.define(version: 2021_02_18_130614) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 2021_02_17_082310) do
 
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
+    t.string "item_name"
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "item_name", default: "f"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_02_17_082310) do
     t.integer "item_id"
     t.integer "price"
     t.integer "amount"
-    t.integer "making_status"
+    t.integer "making_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2021_02_17_082310) do
     t.string "name"
     t.integer "shipping_cost"
     t.integer "total_payment"
-    t.integer "payment_method"
-    t.integer "order_status"
+    t.integer "payment_method", default: 0
+    t.integer "order_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
