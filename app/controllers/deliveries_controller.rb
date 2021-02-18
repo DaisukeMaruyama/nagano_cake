@@ -22,7 +22,7 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id])
-    if @destroy.update(delivery_params)
+    if @delivery.update(delivery_params)
         flash[:notice] = "配送先を編集しました"
       redirect_to deliveries_path
     else
@@ -31,7 +31,7 @@ class DeliveriesController < ApplicationController
   end
 
   def destroy
-    @delivery = Delivery.find(params[:id])
+    @delivery = Delivery.find_by(params[:id])
     @delivery.destroy
     flash[:notice] = "配送先を削除しました。"
     redirect_to deliveries_path
