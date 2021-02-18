@@ -8,9 +8,11 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def index
+    @orders = Order.all
   end
 
   def confirm
@@ -52,7 +54,7 @@ class OrdersController < ApplicationController
         @order_detail.save
       end
       #Addressに登録する処理をかく　今は分からない為、後ほど
-    
+
     current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end

@@ -13,17 +13,24 @@
       </tr>
     </thead>
     
-    
+    <% current_customer.orders.each do |order| %>
     <tbody>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= order.created_at.strftime("%Y年%m月%d日").to_s  %></td>
+        <td>〒<%= order.postal_code %><br>
+        <%= order.address %><br>
+        <%= order.name %></td>
+        <td>
+        <% order.order_details.each do |order_detail| %>
+          <%= order_detail.item.item_name %><br>
+          <% end %>
+          </td>
+        <td><%= order.total_payment.to_s(:delimited) %>円</td>
+        <td><%= order.order_status %></td>
+        <td><%= link_to '詳細',order_path(order.id), class:"btn btn-success" %></td>
       </tr>
     </tbody>
+    <% end %>
     
     
   </table>
