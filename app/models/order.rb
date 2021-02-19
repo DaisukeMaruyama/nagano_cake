@@ -7,6 +7,15 @@ class Order < ApplicationRecord
 
   belongs_to :customer
   has_many :order_details, dependent: :destroy
+  
+  # 小計計記載（個々の製品）
+  def total_price
+    total = 0
+    order_details.each do |order_detail|
+    	total += order_detail.price
+    end
+    total
+  end
 
 	# 個数小計
 	def total_count

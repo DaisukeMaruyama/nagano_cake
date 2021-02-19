@@ -55,10 +55,10 @@
         <% @order.order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.item_name %></td>
-            <td><%=  %>円</td>
-            <td><%= @order.total_count %>個</td><!-- orderモデルに記載-->
-            <td>円</td>
-        </tr>
+            <td><%= order_detail.item.price_with_tax.to_s(:delimited)  %>円</td>
+            <td><%= order_detail.amount %>個</td>
+            <td><%= order_detail.subtotal_price.to_s(:delimited)  %>円</td><!-- orderモデルに記載-->
+          </tr>
         <% end %>
       </table>
     </div>  

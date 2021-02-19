@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
       @order_detail = OrderDetail.new
         @order_detail.order_id = @order.id
         @order_detail.item_id = cart_item.item.id
-        @order_detail.price = @order.total_payment
+        @order_detail.price = cart_item.item.price_with_tax
         @order_detail.amount = cart_item.amount
         @order_detail.making_status = 0
         @order_detail.save
