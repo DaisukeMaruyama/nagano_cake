@@ -25,15 +25,18 @@ class OrdersController < ApplicationController
 
     # 郵便番号をハイフンありのフォーマットに変更
     @order.postal_code.insert(3, "-") if @order.postal_code.present?
+    
     case params[:address_type]
     when "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     when "1"
-      @order.postal_code = Delivery.find(set_Address[:id]).postal_code
-      @order.address = Delivery.find(set_Address[:id]).address
-      @order.name = Delivery.find(set_Address[:id]).name
+      current_customer.deliveries.each do |delivery|
+        @order.postal_code = delivery.postal_code
+        @order.address = delivery.address
+        @order.name = delivery.name
+      end
     when "2"
     end
   end

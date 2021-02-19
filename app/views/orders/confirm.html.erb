@@ -17,9 +17,9 @@
               <% current_customer.cart_items.each do |cart_item| %>
               <tr>
                 <td><%= cart_item.item.item_name %></td>
-                <td class="text-right"><%= (cart_item.item.price * 1.1).round %>円</td>
-                <td class="text-right"><%= cart_item.amount %></td>
-                <td class="text-right"><%= cart_item.subtotal_price %>円</td>
+                <td class="text-right"><%= (cart_item.item.price * 1.1).round.to_s(:delimited) %>円</td>
+                <td class="text-right"><%= cart_item.amount.to_s(:delimited) %></td>
+                <td class="text-right"><%= cart_item.subtotal_price.to_s(:delimited) %>円</td>
               </tr>
               <% end %>
             </tbody>
@@ -30,15 +30,15 @@
             <tbody>
               <tr>
                 <th class="active">送料</th>
-                <td class="text-right"><%= @shipping_cost %>円</td>
+                <td class="text-right"><%= @shipping_cost.to_s(:delimited) %>円</td>
               </tr>
               <tr>
                 <th class="active">商品合計</th>
-                <td class="text-right"><%= current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum}  %>円</td>
+                <td class="text-right"><%= current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum}.to_s(:delimited)  %>円</td>
               </tr>
               <tr>
                 <th class="active">請求金額</th>
-                <td class="text-right"><%= @order.total_payment %>円</td>
+                <td class="text-right"><%= @order.total_payment.to_s(:delimited) %>円</td>
               </tr>
             </tbody>
           </table>
