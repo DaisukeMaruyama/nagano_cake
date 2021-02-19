@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @shipping_cost = 800 #後で管理画面設定。とりあえずはここに８００を記載
+    @shipping_cost = 800 
     @order = current_customer.orders.build(set_order)
 
     #合計金額
