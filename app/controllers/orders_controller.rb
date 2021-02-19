@@ -9,6 +9,12 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @shipping_cost = 800
+    
+    # 商品合計(送料なし)
+    @payment_without_shipping = @order.total_payment -= 800
+    # 商品合計(送料あり)
+    @payment_with_shipping = @order.total_payment += 800
   end
 
   def index
@@ -16,7 +22,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @shipping_cost = 800 
+    @shipping_cost = 800
     @order = current_customer.orders.build(set_order)
 
     #合計金額
@@ -25,7 +31,7 @@ class OrdersController < ApplicationController
 
     # 郵便番号をハイフンありのフォーマットに変更
     @order.postal_code.insert(3, "-") if @order.postal_code.present?
-    
+
     case params[:address_type]
     when "0"
       @order.postal_code = current_customer.postal_code
@@ -64,6 +70,9 @@ class OrdersController < ApplicationController
 
   def thanks
   end
+  
+
+  private
 
   def set_order
     params.require(:order).permit(:total_payment, :payment_method, :address, :postal_code, :name)
