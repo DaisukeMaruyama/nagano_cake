@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
 
   has_many :cart_items, dependent: :destroy
+  
+  enum is_active:{販売中:true, 販売停止中:false}
 
   attachment :image
   

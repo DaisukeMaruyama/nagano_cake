@@ -33,7 +33,7 @@
   				    <div class="item">
                 <%= attachment_image_tag item, :image,:fill,190,150, size: "190×150", fallback: "no_image.jpg", format: "jpeg" %>
               </div>
-              	<div class="credit mx-3 my-2">
+              	<div class="credit mx-3 my-2 ">
               		<div class="itemName"><%= item.item_name %></div>
               		<div class="price">¥<%= number_to_currency(item.price_with_tax) %>(税込)</div>
               	</div>
