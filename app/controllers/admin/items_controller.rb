@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
 
-  PER = 8
+  PER = 10
 
   def new
     @item = Item.new

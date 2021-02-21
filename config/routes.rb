@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
@@ -13,20 +13,24 @@ Rails.application.routes.draw do
 
   resources :items, only: [:show, :index, :new, :create]
 
-  
+
   get 'orders/thanks' => 'orders#thanks'
   resources :orders, only: [:show, :index, :new, :create] do
     collection do
       post :confirm
     end
   end
-  
+
   #destroy_allを先に記述しないとエラーが起こる
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, except: [:new, :edit, :show]
-  
-  resources :deliveries, only: [:edit, :update, :index, :create, :destroy]
 
+  resources :deliveries, only: [:edit, :update, :index, :create, :destroy]
+  
+  
+  devise_for :admins, controllers: {
+  sessions: 'admins/sessions'
+  }
 
   namespace :admin do
     get 'cutomers/index'
