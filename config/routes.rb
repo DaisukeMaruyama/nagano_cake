@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  
+  #草を生やすテスト
   
   root to: 'homes#top'
   get '/about' => 'homes#about'
