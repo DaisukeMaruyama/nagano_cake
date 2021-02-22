@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  
-  
+
+
   root to: 'homes#top'
   get '/about' => 'homes#about'
   get 'search/search'
 
-  devise_for :customers
+  devise_for :customers, controllers: {
+  sessions: 'devise/customers/sessions',
+  registrations: 'devise/customers/registrations' ,
+  passwords: 'devise/customerspasswords' 
+  }
 
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   patch 'customers/withdraw' => 'customers#withdraw'
@@ -26,10 +30,10 @@ Rails.application.routes.draw do
   resources :cart_items, except: [:new, :edit, :show]
 
   resources :deliveries, only: [:edit, :update, :index, :create, :destroy]
-  
-  
+
+
   devise_for :admins, controllers: {
-  sessions: 'admins/sessions'
+  sessions: 'devise/admins/sessions'
   }
 
   namespace :admin do
