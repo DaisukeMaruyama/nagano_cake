@@ -13,6 +13,10 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all.page(params[:page]).per(PER)
   end
+  
+  def edit
+    @item = Item.find(params[:id])
+  end
 
   def create
     @item = Item.new(item_params)
