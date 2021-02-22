@@ -27,7 +27,7 @@
 						<% end %>
 					</td>
 					<td><%= item.price %></td>
-					<td><%= item.genre_id %></td>
+					<td><%= item.genre.genre_name %></td>
 					<td><%= item.is_active %></td>
 					<td><%= link_to "削除", admin_item_path(item.id), method: :delete, data:{confirm:"本当に削除しますか？"} %></td>
 				</tr>

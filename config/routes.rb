@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :customers, controllers: {
   sessions: 'devise/customers/sessions',
   registrations: 'devise/customers/registrations' ,
-  passwords: 'devise/customerspasswords' 
+  passwords: 'devise/customers/passwords'
   }
 
   get 'customers/unsubscribe' => 'customers#unsubscribe'
