@@ -3,8 +3,9 @@
 
     <div class="mx-auto">
       <h3 class="mt-3 mb-3 col-4">製品登録</h3>
+
+      <%= form_with model: @item,url: admin_items_path, method: :post,local: true do |f| %>
       <table class="table table-sm table-borderless">
-        <%= form_with model: @item,url: admin_items_path, method: :post,local: true do |f| %>
         <tr>
           <td scope="col">商品画像</td>
           <td scope="col"><%= f.attachment_field :image %></td>
@@ -27,9 +28,9 @@
         </tr>
          <tr>
           <td>販売ステータス</td>
-          <td><%= f.radio_button :is_active, :販売中 %>
+          <td><%= f.radio_button :is_active, "販売中" %>
               <%= f.label :is_active, "販売中"%>
-              <%= f.radio_button :is_active, :販売停止中 %>
+              <%= f.radio_button :is_active, "販売停止中" %>
               <%= f.label :is_active, "販売停止中" %>
           </td>
 
