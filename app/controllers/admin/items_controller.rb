@@ -13,15 +13,15 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all.page(params[:page]).per(PER)
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice] = "編集を保存しましした。"
+      flash[:notice] = "編集を保存しました。"
       redirect_to admin_items_path
     else
       render :edit
@@ -33,7 +33,7 @@ class Admin::ItemsController < ApplicationController
     @item.save
     redirect_to items_path
   end
-  
+
   def destroy
     @item = Item.find(params[:id])
     @item.destroy

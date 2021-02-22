@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  #草を生やすテスト2forfrodjdk
   
   root to: 'homes#top'
   get '/about' => 'homes#about'
@@ -56,7 +55,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :genres, only: [:update, :index, :edit, :create]
+    resources :genres, only: [:update, :index, :edit, :destroy, :create]
   end
 
   namespace :admin do
