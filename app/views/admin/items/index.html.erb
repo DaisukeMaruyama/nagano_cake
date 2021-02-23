@@ -28,7 +28,13 @@
 					</td>
 					<td><%= item.price %></td>
 					<td><%= item.genre.genre_name %></td>
-					<td><%= item.is_active %></td>
+					<td>
+						<% if item.is_active == "販売中"%>
+              <span style="color:#49C918;"><%= item.is_active %></sapn>
+            <% else %>
+              <span style="color:#C0C2BF;"><%= item.is_active %></sapn>
+            <% end %>
+					</td>
 					<td><%= link_to "削除", admin_item_path(item.id), method: :delete, data:{confirm:"本当に削除しますか？"} %></td>
 				</tr>
 		</tbody>

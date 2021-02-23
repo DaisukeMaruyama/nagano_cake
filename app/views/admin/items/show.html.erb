@@ -27,10 +27,10 @@
              <tr>
               <td style="width: 40%;">販売ステータス</td>
               <td>
-                <% if @item.is_active %>
+                <% if @item.is_active == "販売中" %>
                   <span style="color:#49C918;"><%= @item.is_active %></sapn>
                 <% else %>
-                  <span style="color:##CCCFCB;"><%= @item.is_active %></sapn>
+                  <span style="color:#C0C2BF;"><%= @item.is_active %></sapn>
                 <% end %>
                 </td>
             </tr>
