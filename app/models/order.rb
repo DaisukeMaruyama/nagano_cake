@@ -1,4 +1,8 @@
 class Order < ApplicationRecord
+  
+  validates :postal_code, presence: true
+  validates :address, length: {minimum: 2, maximum: 50}, presence: true
+	validates :name, length: {minimum: 1}, presence: true
 
   enum payment_method: {クレジットカード:0, 銀行振込:1}
   enum address_type: {ご自身の住所:0, 登録済住所から選択:1, 新しいお届け先:2}

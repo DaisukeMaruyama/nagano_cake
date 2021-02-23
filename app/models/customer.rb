@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
-  validates :email, presence: true
+  validates :email, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, :address, :postal_code,  presence: true
+  
 
   
   enum is_deleted:{Deleted: true, Nondeleted: false}
