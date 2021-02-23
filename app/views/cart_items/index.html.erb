@@ -2,11 +2,8 @@
 	<div class="row">
 		<div class="ec-cart-index-main">
 			<h2 class="ec-cart-index-title">ショッピングカート</h2>
-			<!-- success-massage -->
-			<% if flash[:notice] %>
-			  <p class="success-message"><%= flash[:notice] %></p>
-			<% end %>
-			<!-- / -->
+			<!-- success-massageはlayout.html -->
+
 			<div class="btn-box text-right">
 				<%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class:"btn btn-danger" %>
 			</div>

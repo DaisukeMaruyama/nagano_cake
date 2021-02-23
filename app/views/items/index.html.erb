@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-3 mt-3">
+    <div class="col-lg-3 col-md-3 col-sm-7 col-xs- mt-3">
       <div class="name-search">
-        <h5>商品名検索</h5>
+        <h5><strong>商品名検索</strong></h5>
         <%= form_with url: search_search_path, method: :get, local: true do |f| %>
           <%= f.text_field 'search[value]', size: "26x4" %><br>
           <span class="search-button col-xs-12 text-right">
@@ -22,7 +22,7 @@
       <% @genres.each do |genre| %>
         <tr>
           <td>
-            <%= link_to genre.genre_name, search_search_path('search[value]': genre.id, 'search[how]': "match") %>
+            <%= link_to genre.genre_name, search_search_path('search[value]': genre.id, 'search[how]': "match"), style:"color: black;" %>
           </td>
         </tr>
       <% end %>
@@ -31,9 +31,9 @@
     </div>
 
 
-    <div class="col-9">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 		  <section class="contentBlock">
-			  <div class="itemSlidesWrapper mt-3">
+			  <div class="itemSlidesWrapper mt-3 ml-4">
 					<h3>製品一覧(全<%= @items.count %>件)</h3>
 					<% if current_customer == nil %>
   					<%= link_to (new_customer_session_path) do %>
@@ -42,7 +42,7 @@
   				<% end %>
 
 
-          <ul class="itemSlides ">
+          <ul class="itemSlides">
 
           <% @items.each do |item| %>
   				  <li class="item">

@@ -17,7 +17,7 @@
       <ul class="itemSlides ">
           <% @items.each do |item| %>
   				  <li class="item">
-  				    <a style="color: black;" href="#">
+  				    <%= link_to(item_path(item),class:"text-dark") do %>
   				    <div class="item">
                 <%= attachment_image_tag item, :image,:fill,190,150, size: "190×150", fallback: "no_image.jpg", format: "jpeg" %>
               </div>
@@ -25,12 +25,13 @@
               		<div class="itemName"><%= item.item_name %></div>
               		<div class="price">¥<%= number_to_currency(item.price) %>+税</div>
               	</div>
+              <% end %>	
               </a>
             </li>
           <% end %>
       </ul>
     </div>
-    <a class="toIndex" href="/items">全ての商品を見る></a>
+    <a class="toIndex mb-3" style="float: right; color: black;" href="/items">全ての商品を見る></a>
 
   </div>
 
