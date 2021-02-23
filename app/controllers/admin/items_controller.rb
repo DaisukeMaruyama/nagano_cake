@@ -30,8 +30,12 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
+    if @item.save
+      flash[:notice] = "製品を登録しました"
     redirect_to items_path
+    else
+      render :new
+    end
   end
 
   def destroy

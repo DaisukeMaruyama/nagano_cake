@@ -51,6 +51,11 @@ class OrdersController < ApplicationController
     @order = current_customer.orders.build(set_order)
     @shipping_cost = 800
     @order.total_payment = current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum} + @shipping_cost
+    
+    unless @order.valid?
+      @delivery = Delivery.new
+      render :new
+    end
 
      @order.save
       current_customer.cart_items.each do |cart_item|
@@ -62,8 +67,8 @@ class OrdersController < ApplicationController
         @order_detail.making_status = 0
         @order_detail.save
       end
-      #Addressに登録する処理をかく　今は分からない為、後ほど
-
+      #Addressに登録する処理
+    Delivery.create(customer_id: current_customer.id, postal_code: @order.postal_code, address: @order.address, name: @order.name)
     current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
