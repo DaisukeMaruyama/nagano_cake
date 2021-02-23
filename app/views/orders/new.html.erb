@@ -9,6 +9,17 @@
 
     <%= form_with model: @order,url: confirm_orders_path, method: :post, local: true do |f| %>
 
+    <% if @order.errors.any? %>
+      <div class="error-explanation">
+        <h3><%= @order.errors.count %>件のエラーが発生しております。</h3>
+        <% @order.errors.full_messages.each do |message| %>
+          <ul>
+            <li><%= message %></li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+
           <table class ="table-no-border">
             <div class="field">
               <strong><%= f.label :payment_method, "支払い方法" %></strong><br>

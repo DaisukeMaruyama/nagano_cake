@@ -12,7 +12,7 @@
     <% if @customer.errors.any? %>
       <div class="error-explanation">
         <h3><%= @customer.errors.count %>件のエラーが発生しております。</h3>
-        <% @c.errors.full_messages.each do |message| %>
+        <% @customer.errors.full_messages.each do |message| %>
           <ul>
             <li><%= message %></li>
           </ul>
