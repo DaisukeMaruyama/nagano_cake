@@ -9,10 +9,23 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    items_path
+    if resource.instance_of?(Customer)
+      items_path
+    elsif resource.instance_of?(Admin)
+      admin_items_path
+    else
+      items_path
+    end
   end
 
-  def after_sign_in_path_for(resource)
-    items_path
+  def after_sign_out_path_for(resource)
+    if resource == :customer
+      root_path
+    elsif resource == :admin
+      new_admin_session_path
+    else
+      root_path
+    end
   end
+  
 end
