@@ -35,7 +35,7 @@
               <span style="color:#C0C2BF;"><%= item.is_active %></sapn>
             <% end %>
 					</td>
-					<td><%= link_to "削除", admin_item_path(item.id), method: :delete, data:{confirm:"本当に削除しますか？"} %></td>
+					<td><%= link_to "削除", admin_item_path(item.id), method: :delete, data:{confirm:"本当に削除しますか？"}, class:"text-danger" %></td>
 				</tr>
 		</tbody>
 		<% end %>
