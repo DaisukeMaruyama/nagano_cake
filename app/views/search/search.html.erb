@@ -33,12 +33,7 @@
               <%= link_to (item_path(data.id)) do %>
                 <button type="button" class="btn btn btn-outline-dark btn-sm" style="margin: 10px;"> 製品詳細画面</button>
               <% end %>
-
-            <% if customer_signed_in? %>
-              <%= link_to (item_path(data.id)) do %>
-                <button type="button" class="btn btn btn-outline-dark btn-sm"> 購入</button>
-              <% end %>
-            <% end %>
+              
             </li>
           <% end %>
 
