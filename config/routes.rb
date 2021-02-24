@@ -38,13 +38,6 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'cutomers/index'
-    get 'cutomers/show'
-    get 'cutomers/edit'
-    get 'cutomers/update'
-  end
-
-  namespace :admin do
     get 'order_details/update'
   end
 
