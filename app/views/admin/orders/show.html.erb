@@ -1,2 +1,82 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <h4 class="headline mt-4 mb-3">注⽂履歴詳細</h4>
+  
+  
+  <div class="form-group row mt-2">
+    <label class="col-sm-2"><strong>購入者</strong></label>
+    <div class="col-sm-10"><%= @order.customer.last_name %><%= @order.customer.first_name %></div>
+  </div>
+  
+  <div class="form-group row">
+    <label class="col-sm-2"><strong>注文日</strong></label>
+    <div class="col-sm-10"><%= @order.created_at.strftime("%Y年%m月%d日") %></div>
+  </div>
+  
+  <div class="form-group row">
+    <label class="col-sm-2"><strong>配送先</strong></label>
+    <div class="col-sm-10">〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></div>
+  </div>
+  
+  <div class="form-group row">
+    <label class="col-sm-2"><strong>支払い方法</strong></label>
+    <div class="col-sm-10"><%= @order.payment_method %></div>
+  </div>
+  
+  <div class="form-group row">
+    <label class="col-sm-2"><strong>注文ステータス</strong></label>
+    <div class="col-sm-10">
+      <%= form_with model: @order,url: admin_order_path, method: :patch, local:true do |f| %>
+      <%= f.select :order_status, {入金待ち:"入金待ち", 入金確認:"入金確認", 製作中:"製作中", 発送準備中:"発送準備", 発送済み:"発送済み"} %>
+      <%= f.submit '変更', class:"btn-sm btn-success ml-3" %>
+      <% end %>
+      </div>
+  </div>
+  
+  <div class="row">
+    <table class="table table-sm col-sm-8">
+      <thead class="active">
+        <tr>
+          <th scope="col">商品名</th>
+          <th scope="col">単価(税込)</th>
+          <th scope="col">数量</th>
+          <th scope="col">小計</th>
+          <th scope="col">制作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.item_name %></td>
+          <td><%= order_detail.item.price_with_tax.to_s(:delimited)  %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= order_detail.subtotal_price.to_s(:delimited)  %></td>
+          <td>
+            <%= form_with model: order_detail, url: admin_order_detail_path, method: :patch, local:true do |f| %>
+            <%= f.select :making_status, {制作不可:"制作不可",制作待ち:"制作待ち", 制作中:"製作中", 制作完了:"制作完了"}%>
+            <%= f.submit '変更', class:"btn-sm btn-success ml-3" %>
+            <% end %>
+            </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div class="col-sm-3 offset-1">
+      <table class="table table-sm">
+        <tr>
+          <th scope="col">商品合計</th>
+          <td scope="col"><%= @payment_without_shipping.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @shipping_cost %>円</td>
+        </tr>
+        <tr style="border-bottom: 2px solid grey;">
+          <th>請求額合計</th>
+          <td><strong><%= @order.total_payment.to_s(:delimited) %>円</strong></td>
+        </tr>
+      </table>
+    </div>
+    
+  </div>
+</div>
