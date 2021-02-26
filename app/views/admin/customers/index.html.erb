@@ -12,7 +12,6 @@
 					<th>名前</th>
 					<th>メールアドレス</th>
 					<th>ステータス</th>
-					<th></th>
 				</tr>
 		</thead>
 		<tbody>
@@ -32,7 +31,6 @@
               <span style="color:#C0C2BF;">退会</sapn>
             <% end %>
 					</td>
-					<td><%= link_to "削除", admin_customer_path(customer.id), method: :delete, data:{confirm:"本当に削除しますか？"}, class:"text-danger" %></td>
 				</tr>
 		</tbody>
 		<% end %>
