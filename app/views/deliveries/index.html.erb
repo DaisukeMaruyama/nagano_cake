@@ -53,7 +53,7 @@
   <tbody>
     <% current_customer.deliveries.each do |delivery| %>
     <tr>
-      <td><%= delivery.postal_code %></td>
+      <td>〒<%= delivery.postal_code %></td>
       <td><%= delivery.address %></td>
       <td><%= delivery.name %></td>
       <td style="width: 140px;">

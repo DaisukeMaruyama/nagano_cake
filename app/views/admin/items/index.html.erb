@@ -26,10 +26,10 @@
 						<%= item.item_name %>
 						<% end %>
 					</td>
-					<td><%= item.price %></td>
+					<td><%= item.price.to_s(:delimited) %></td>
 					<td><%= item.genre.genre_name %></td>
 					<td>
-						<% if item.is_active == "販売中"%>
+						<% if item.is_active == "販売中" %>
 			              <span style="color:#49C918;"><%= item.is_active %></sapn>
 			            <% else %>
 			              <span style="color:#C0C2BF;"><%= item.is_active %></sapn>
