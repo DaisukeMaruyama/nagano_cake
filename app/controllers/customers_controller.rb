@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only: [:update, :edit, :unsubscribe, :withdraw]
 
   def show
     @customer = Customer.find(params[:id])
@@ -29,6 +30,13 @@ class CustomersController < ApplicationController
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
+  end
+  
+  def ensure_correct_customer
+    if params[:id].to_i != current_customer.id
+      flash[:alert] = "権限がありません。"
+      redirect_to customer_path(current_customer)
+    end  
   end
 
   private

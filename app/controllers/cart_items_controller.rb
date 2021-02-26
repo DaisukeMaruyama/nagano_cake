@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: [:update, :destroy, :destroy_all]
 
   def index
     @customer = Customer.find(current_customer.id)
@@ -31,6 +32,14 @@ class CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
     redirect_to cart_items_path
+  end
+  
+  def correct_customer
+		@cart_item = CartItem.find(params[:id])
+		if current_customer.id != @cart_item.customer_id
+		  flash[:alert] = "権限がありません。"
+			redirect_to cart_items_path
+		end
   end
 
   private

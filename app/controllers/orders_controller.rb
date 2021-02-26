@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: [:show, :edit, :update, :destroy]
 
   def new
     @order = Order.new
@@ -28,11 +29,7 @@ class OrdersController < ApplicationController
 
     #合計金額
     @order.total_payment = current_customer.cart_items.inject(0){|sum, cart_item| cart_item.subtotal_price + sum} + @shipping_cost
-
-
-    # 郵便番号をハイフンありのフォーマットに変更
-    @order.postal_code.insert(3, "-") if @order.postal_code.present?
-
+    
     case params[:address_type]
     when "0"
       @order.postal_code = current_customer.postal_code
@@ -75,6 +72,14 @@ class OrdersController < ApplicationController
   end
 
   def thanks
+  end
+  
+  def correct_customer
+    @order = Order.find(params[:id])
+    if current_customer.id != @order.customer_id
+      flash[:alert] = "権限がありません。"
+      redirect_to orders_path
+    end
   end
   
 

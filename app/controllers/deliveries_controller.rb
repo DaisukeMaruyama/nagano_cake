@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: [:edit, :update, :destroy]
 
   def index
     @delivery = Delivery.new
@@ -36,6 +37,14 @@ class DeliveriesController < ApplicationController
     @delivery.destroy
     flash[:notice] = "配送先を削除しました。"
     redirect_to deliveries_path
+  end
+  
+  def correct_customer
+    @delivery = Delivery.find(params[:id])
+    if @delivery.customer_id != current_customer.id
+       flash[:alert] = "権限がありません。"
+       redirect_to deliveries_path
+    end
   end
 
   private
