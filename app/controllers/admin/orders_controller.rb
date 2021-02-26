@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @orders = Order.all
@@ -23,6 +24,7 @@ class Admin::OrdersController < ApplicationController
       render :show
     end
   end
+  
   
   private
   

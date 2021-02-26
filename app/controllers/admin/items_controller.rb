@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
 
   PER = 10
 
@@ -43,6 +44,8 @@ class Admin::ItemsController < ApplicationController
     @item.destroy
     redirect_to admin_items_path
   end
+  
+
 
   private
 

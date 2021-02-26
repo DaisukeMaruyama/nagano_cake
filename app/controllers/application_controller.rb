@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     if resource.instance_of?(Customer)
       items_path
     elsif resource.instance_of?(Admin)
-      admin_items_path
+      admin_orders_path
     else
       items_path
     end
