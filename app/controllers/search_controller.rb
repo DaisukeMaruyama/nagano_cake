@@ -8,8 +8,7 @@ class SearchController < ApplicationController
   private
 
   def match(value)
-    
-    Item.where(item_name: value).or(Item.where(genre_id: value))
+    Item.where("item_name = ? OR genre_id = ?", value, value )
   end
   
   def forward(value)                              
@@ -40,3 +39,6 @@ class SearchController < ApplicationController
 
   
 end
+
+
+

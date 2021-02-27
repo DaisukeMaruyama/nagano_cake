@@ -13,7 +13,9 @@ class Admin::SearchController < ApplicationController
     if model == 'item'
       Item.where(item_name: content)
     elsif model == 'customer'
-      Customer.where("last_name LIKE ? AND first_name LIKE?", "%#{content}%", "%#{content}%")
+      params = {name: content}
+      name = params[:name].split(' ')
+      Customer.where(last_name: name[0], first_name: name[1])
     end
   end
 
@@ -53,5 +55,7 @@ class Admin::SearchController < ApplicationController
       partical(model, content)
     end
   end
+
+  
 end
 
