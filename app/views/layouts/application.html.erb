@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-   
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
   </head>
   <body>
@@ -33,6 +33,13 @@
                 <li><%= link_to '注⽂履歴⼀覧', admin_orders_path, class: " nav-link text-light" %></li>
                 <li><%= link_to 'ジャンル⼀覧', admin_genres_path , class: " nav-link text-light" %></li>
                 <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light", data:{confirm: 'ログアウトしますか？'} %></li>
+                <li class="search-form row ml-1 mt-1">
+                  <%= form_tag(admin_search_search_path, method: :get) do %>
+                  <%= text_field_tag 'search[content]' %><%= select_tag 'search[model]', options_for_select({ "Item" => "item", "Customer" => "customer" }) %>
+                  <%= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "match"  }) %>
+                  <%= submit_tag '検索', class: "btn-sm btn-primary" %>
+                  <% end %>
+                </li>
               <% else %>
                 <li><%= link_to 'About', about_path, class: " nav-link text-light" %></li>
                 <li><%= link_to '商品一覧', items_path, class: " nav-link text-light" %></li>
@@ -49,7 +56,7 @@
         <%= flash[:notice] %>
       </div>
     <% end %>
-    
+
     <% if flash[:alert] %>
       <div class="flash" style="color: red;">
         <%= flash[:alert] %>

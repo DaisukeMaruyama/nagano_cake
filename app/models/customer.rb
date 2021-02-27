@@ -36,4 +36,6 @@ class Customer < ApplicationRecord
     amount
   end
 
+
+
 end
