@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def search
     @value = params["search"]["value"]         #データを代入
     @how = params["search"]["how"]             #データを代入
-    @datas = search_for(@how, @value)          #def search_forを実行(引数に検索ワードと検索方法)
+    @datas = search_for(@how, @value).page(params[:page]).per(8).order(created_at: :desc)        #def search_forを実行(引数に検索ワードと検索方法)
   end
 
   private
