@@ -22,7 +22,7 @@ class Admin::OrdersController < ApplicationController
         @order.order_details.each do |order_detail|
       		order_detail.update(making_status: "制作待ち")
         end
-		  end
+      end
       flash[:notice] = "編集を保存しました。"
       redirect_to admin_orders_path
     else
