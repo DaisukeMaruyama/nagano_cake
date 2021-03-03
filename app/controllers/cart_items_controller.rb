@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :correct_customer, only: [:update, :destroy, :destroy_all]
+  before_action :correct_customer, only: [:update, :destroy]
 
   def index
     @customer = Customer.find(current_customer.id)
