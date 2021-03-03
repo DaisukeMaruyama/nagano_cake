@@ -1,8 +1,8 @@
 class Customer < ApplicationRecord
   validates :email, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, :address, :postal_code,  presence: true
-  
 
-  
+
+
   enum is_deleted:{Deleted: true, Nondeleted: false}
 
   #is_deletedされていない（false）ならログイン可能
@@ -16,7 +16,7 @@ class Customer < ApplicationRecord
 
   has_many :cart_items
   has_many :orders
-  has_many :deliveries
+  has_many :deliveries, dependent: :destroy
 
    # カートアイテム合計
   def cart_item_sum
